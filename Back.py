@@ -23,9 +23,14 @@ def get_phone_book():
 def add_contact(contact):
     notes.append(contact)
 
-def change_cont (contact, index):
-    notes.pop(index - 1)
-    notes.insert(index - 1, contact)
+# def change_cont (contact: list[dict], id: int):
+#     index = 0
+#     for value in contact:
+#         index = index + 1
+#         if value.get("id") == id:
+#             break
+#     notes.pop(index - 1)
+#     notes.insert(index - 1, contact)
 
 def dell_contact (notes, index):
     notes.pop(index - 1)

@@ -16,10 +16,9 @@ def start():
                 Back.add_contact(Front.add_contact())
             case 4:
                 if Front.show_contact(pb, 'Заметки отсутствуют'):
-                    index = Front.indexx('Введите номер изменяемой заметки')
-                    contact = Front.change_contact(pb, index)
-                    Back.change_cont(contact, index)
-                    Front.show_message(f'Заметка {Back.get_phone_book()[index - 1].get("name")} успешно изменена!')
+                    id = Front.indexx('Введите id изменяемой заметки')
+                    Front.change_contact(pb, id)
+                    Front.show_message(f'Заметка успешно изменена!')
             case 5:
                 Front.show_contact(pb, 'Телефонная книга пуста или не открыта')
                 index = Front.indexx('Введите номер удаляемой заметки: ')
