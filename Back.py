@@ -17,21 +17,19 @@ def save_file ():
     with open('Notes.json', 'w', encoding='UTF-8') as file:
         file.write(data)
 
-def get_phone_book():
+def get_note_book():
     return notes
 
-def add_contact(contact):
+def add_note(contact):
     notes.append(contact)
 
-# def change_cont (contact: list[dict], id: int):
-#     index = 0
-#     for value in contact:
-#         index = index + 1
-#         if value.get("id") == id:
-#             break
-#     notes.pop(index - 1)
-#     notes.insert(index - 1, contact)
 
-def dell_contact (notes, index):
-    notes.pop(index - 1)
-
+def dell_note (notes, id):
+    index = 0
+    for contact in notes:
+        index = index + 1
+        if id in contact.get("id") and id != "":
+            notes.pop(index - 1)
+        elif index >= len(notes) or id == "":
+            print("Заметки с таким id не существует")
+            break

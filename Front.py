@@ -13,7 +13,7 @@ def menu ():
         else:
             print(f'Введите Число от 1 до {length_menu}')
 
-def show_contact(telebook, error_message):
+def show_note(telebook, error_message):
     if not telebook:
         print(error_message)
         return False
@@ -25,12 +25,15 @@ def show_contact(telebook, error_message):
                   f'{contact.get("date")}')
         return True
 
-def add_contact():
-    id = input('Введите ID (при редактировании не изменится): ')
+def add_note(pb: list[dict]):
+    count = int(pb[len(pb) - 1].get("id")) + 1
+    id = str(count)
+    print(f'ID вашей заметки: {id}')
     tail = input('Введите заголовок: ')
     body = input('Введите заметку: ')
     date = datetime.datetime.now()
     date = (str(date))
+    print(show_message('Заметка успешно создана!'))
     return { 'id' : id, 'tail' : tail, 'body' : body, 'date' : date}
 
 def indexx(message: str):
@@ -39,24 +42,23 @@ def indexx(message: str):
 def search(message):
     return input(message)
 
-def change_contact(telebook: list[dict], id: str):
-    print('Введите новые данные или оставьте пустое поле, если нет изменений')
+def change_note(telebook: list[dict], id: str):
     index = 0
     for contact in telebook:
         index = index + 1
-        if id in contact.get("id"):
-            break
-    if index > len(telebook):
-        print("Заметки с таким id не существует")
-    else:
-        contact = add_contact()
-        cont = {'id': telebook[index - 1].get('id'),
-                'tail': contact.get('tail') if contact.get('tail') else telebook[index - 1].get('tail'),
-                'body': contact.get('body') if contact.get('body') else telebook[index - 1].get('body'),
-                'date': contact.get('date') if contact.get('date') else telebook[index - 1].get('date')}
-        Back.notes.pop(index - 1)
-        Back.notes.insert(index - 1, cont)
-    return print(index)
+        if id in contact.get("id") and id != "":
+            print('Введите новые данные или оставьте пустое поле, если нет изменений')
+            contact = add_note(telebook)
+            cont = {'id': telebook[index - 1].get('id'),
+                    'tail': contact.get('tail') if contact.get('tail') else telebook[index - 1].get('tail'),
+                    'body': contact.get('body') if contact.get('body') else telebook[index - 1].get('body'),
+                    'date': contact.get('date') if contact.get('date') else telebook[index - 1].get('date')}
+            Back.notes.pop(index - 1)
+            Back.notes.insert(index - 1, cont)
+            print(show_message('Заметка успешно изменена!'))
+        elif index >= len(telebook):
+            print(show_message('Введен неверный ID!'))
+    return
 
 def show_message(message):
     print('-' * len(message))
