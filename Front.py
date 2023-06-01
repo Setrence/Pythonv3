@@ -19,9 +19,9 @@ def show_note(telebook, error_message):
         return False
     else:
         for i, contact in enumerate(telebook, 1):
-            print(f'{contact.get("id"):<10}'
-                  f'{contact.get("tail"):<10}'
-                  f'{contact.get("body"):<10}'
+            print(f'{contact.get("id"):<5}'
+                  f'{contact.get("tail"):<15}'
+                  f'{contact.get("body"):<50}'
                   f'{contact.get("date")}')
         return True
 
