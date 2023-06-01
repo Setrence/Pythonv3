@@ -25,7 +25,7 @@ def show_contact(telebook, error_message):
         return True
 
 def add_contact():
-    id = input('Введите ID: ')
+    id = input('Введите ID (при редактировании не изменится): ')
     tail = input('Введите заголовок: ')
     body = input('Введите заметку: ')
     date = datetime.datetime.now()
@@ -41,11 +41,13 @@ def search(message):
 def change_contact(telebook: list[dict], index: int):
     print('Введите новые данные или оставьте пустое поле, если нет изменений')
     contact = add_contact()
-    return {'id': contact.get('id') if contact.get('id') else telebook[index - 1].get('id'),
+    return {'id': telebook[index - 1].get('id'),
             'tail': contact.get('tail') if contact.get('tail') else telebook[index - 1].get('tail'),
-            'body': contact.get('body') if contact.get('body') else telebook[index - 1].get('body')}
+            'body': contact.get('body') if contact.get('body') else telebook[index - 1].get('body'),
+            'date': contact.get('date') if contact.get('date') else telebook[index - 1].get('date')}
 
 def show_message(message):
     print('-' * len(message))
     print(message)
     print('-' * len(message))
+
