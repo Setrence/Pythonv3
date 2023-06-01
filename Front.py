@@ -39,8 +39,6 @@ def add_note(pb: list[dict]):
 def indexx(message: str):
     return input(message)
 
-def search(message):
-    return input(message)
 
 def change_note(telebook: list[dict], id: str):
     index = 0
